@@ -1,1 +1,28 @@
 <h1>make new artwork</h1>
+
+<form action="/artworks" method="POST" enctype="multipart/form-data">
+	<label>Image:</label>
+	<br>
+	<input type="file" name="artwork[file]"/>
+	<br>
+
+	<label>Title:</label><br>
+	<input type="text" name="artwork[title]"/>
+	<br><br>
+
+	<label>Date:</label><br>
+	<input type="text" name="artwork[date]"/>
+	<br><br>
+
+	<label>Medium:</label> <br>
+	<input type="text" name="artwork[medium]"/>
+	<br><br>
+
+	<label>Dimensions:</label> <br>
+	<input type="text" name="artwork[dimensions]"/>
+	<br><br>
+
+	<label>Notes:</label><br>
+	<textarea name="artwork[notes]" rows="4" cols="50"></textarea>
+	<br>
+</form>
