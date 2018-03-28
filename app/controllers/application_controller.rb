@@ -27,6 +27,15 @@ class ApplicationController < Sinatra::Base
 		end
 	end
 
+	get '/logout' do
+    if !logged_in?
+      erb :login
+    else
+      session.clear
+      redirect to "/"
+    end
+	end	
+
 	get '/signup' do
 		if !logged_in?
 			erb :signup
