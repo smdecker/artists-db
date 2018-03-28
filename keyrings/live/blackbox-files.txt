@@ -1,0 +1,1 @@
+Users/stephendecker/Documents/flatiron/artists-db/config/environment.rb
