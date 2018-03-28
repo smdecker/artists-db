@@ -11,6 +11,10 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
+gem "carrierwave"
+gem "mini_magick"
+gem "fog"
+gem "rack-flash3"
 
 group :test do
   gem 'rspec'

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327221723) do
+ActiveRecord::Schema.define(version: 20180327225209) do
+
+  create_table "artwork_categories", force: :cascade do |t|
+    t.integer "artwork_id"
+    t.integer "category_id"
+  end
+
+  create_table "artwork_materials", force: :cascade do |t|
+    t.integer "artwork_id"
+    t.integer "material_id"
+  end
 
   create_table "artworks", force: :cascade do |t|
     t.string  "title"
@@ -23,6 +33,16 @@ ActiveRecord::Schema.define(version: 20180327221723) do
     t.integer "user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string  "name"
+    t.integer "user_id"
+  end
+
+  create_table "material_categories", force: :cascade do |t|
+    t.integer "material_id"
+    t.integer "category_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string  "name"
     t.string  "purchase_location"
@@ -32,6 +52,11 @@ ActiveRecord::Schema.define(version: 20180327221723) do
     t.string  "serial"
     t.string  "file"
     t.integer "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
   end
 
 end
