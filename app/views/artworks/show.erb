@@ -1,0 +1,11 @@
+
+<a href="<%= @artwork.file_url %>"><img src="<%= @artwork.file_url(:thumb) %>"></a>
+
+<div>                
+  <p><b>Name:</b> <%= @artwork.title %></p>
+  <p><b>Date:</b> <%= @artwork.date %></p>
+  <p><b>Medium:</b> <%= @artwork.medium %></p>
+  <p><b>Dimensions:</b> <%= @artwork.dimensions %></p>
+  <p><b>Notes:</b> <%= @artwork.notes %></p>
+
+</div>

@@ -28,4 +28,36 @@ class ArtworkController < ApplicationController
     end
   end
 
+  get '/artworks/:slug' do
+    if logged_in?
+      @artwork = Artwork.find_by_slug(params[:slug])
+
+      erb :"artworks/show"
+    else
+      redirect to "/"
+    end
+  end
+
+  get '/artworks/:slug/edit' do
+    if !logged_in?
+      redirect to "/"
+    else
+      @user = current_user
+      @artwork = Artwork.find_by_slug(params[:slug])
+
+      if !current_user.artworks.include?(@artwork)
+        redirect to "/artworks/#{@artwork.slug}"
+      else
+        erb :"artworks/edit"
+      end
+    end
+  end
+
+  patch '/artworks/:slug' do
+    @artwork = Artwork.find_by_slug(params[:slug])
+
+    @artwork.update(params[:artwork])
+    redirect to "/artworks/#{@artwork.slug}"
+  end  
+
 end

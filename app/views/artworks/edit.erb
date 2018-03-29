@@ -1,0 +1,30 @@
+<p>Edit Artwork / <%= @artwork.title %></p>
+
+<form action="/artworks/<%= @artwork.slug %>" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="_method" value="PATCH">
+    <br>
+    <img src="<%= @artwork.file_url(:thumb) %>"/><br>
+    <input type="file" name="artwork[file]" value="<%= @artwork.file_url %>"/>
+    <br><br>
+
+    <label>Title:</label><br>
+    <input type="text" name="artwork[title]" value="<%=@artwork.title%>"/>
+    <br><br>
+
+    <label>Date:</label><br>
+    <input type="text" name="artwork[date]" value="<%=@artwork.date%>"/>
+    <br> <br>
+
+    <label>Medium:</label> <br>
+    <input type="text" name="artwork[medium]" value="<%=@artwork.medium%>"/>
+    <br><br>
+
+    <label>Dimensions:</label> <br>
+		<input type="text" name="artwork[dimensions]" value="<%=@artwork.dimensions%>"/>
+		<br><br>
+
+    <label>Notes:</label><br>
+    <textarea name="artwork[notes]" rows="4" cols="50"><%=@artwork.notes%></textarea>
+    <br><br>
+  <input type="submit" id="submit" value="Update Artwork"/>
+</form>
