@@ -228,9 +228,9 @@ GEM
       rack
     rack-protection (2.0.1)
       rack
-    rack-test (1.0.0)
+    rack-test (0.8.2)
       rack (>= 1.0, < 3)
-    rake (12.3.1)
+    rake (12.3.0)
     rbovirt (0.1.5)
       nokogiri
       rest-client (> 1.7.0)
@@ -239,7 +239,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    require_all (2.0.0)
+    require_all (1.5.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)

@@ -1,1 +1,6 @@
 <h1>artworks here</h1>
+
+<% Artwork.all.each do |artwork| %>
+	<img src="<%= artwork.file_url(:thumb) %>">
+	<%= artwork.title %>
+<%end%>	

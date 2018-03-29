@@ -4,7 +4,7 @@ class ArtworkController < ApplicationController
       redirect to "/"
     else
       @user = current_user
-
+      @artwork = Artwork.find_by_id(params[:id])
       erb :"artworks/index"
     end
   end 
@@ -18,4 +18,14 @@ class ArtworkController < ApplicationController
 			erb :"artworks/new_artwork"
 		end
 	end
+
+  post '/artworks' do
+
+    @artwork = current_user.artworks.build(params[:artwork])       
+
+    if @artwork.save
+      redirect to "/artworks"
+    end
+  end
+
 end

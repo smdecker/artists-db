@@ -1,4 +1,11 @@
 require './config/environment'
+require 'sinatra/base'
+require 'sinatra/activerecord'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require 'mini_magick'
+require 'rack-flash'
+require 'uri'
 
 class ApplicationController < Sinatra::Base
 
@@ -17,7 +24,7 @@ class ApplicationController < Sinatra::Base
 		end
 	end
 
-	post 'login' do
+	post '/login' do
 		user = User.find_by(username: params[:username])
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id

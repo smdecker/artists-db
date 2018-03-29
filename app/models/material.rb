@@ -5,4 +5,6 @@ class Material < ActiveRecord::Base
 	has_many :categories, :through => :material_categories
 	belongs_to :user
 
+	extend CarrierWave::Mount
+	mount_uploader :file, Uploader
 end
