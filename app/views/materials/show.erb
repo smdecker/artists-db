@@ -1,0 +1,22 @@
+
+<a href="<%= @material.file_url %>"><img src="<%= @material.file_url(:thumb) %>"></a>
+
+<div>
+  <p><b>Name:</b> <%= @material.name %></p>
+  <p><b>Purchase location:</b> <%= @material.purchase_location %></p>
+  <p><b>Price:</b> <%= @material.price %></p>
+  <p><b>Quantity:</b> <%= @material.quantity %></p>
+  <p><b>Serial:</b> <%= @material.serial %></p>
+  <p><b>Notes:</b> <%= @material.notes %></p>
+  <div>
+    <% @material.categories.each do |category| %>
+      <p><b>Category:</b><%=category.name%></p>
+    <%end%>
+  </div>
+</div>
+
+<form action="/materials/<%= @material.slug %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  
+  <input type="submit" value="Delete Material">
+</form>
