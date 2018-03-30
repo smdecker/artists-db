@@ -1,0 +1,6 @@
+<h1>materials here</h1>
+
+<% Material.all.each do |material| %>
+	<img src="<%= material.file_url(:thumb) %>">
+	<%= material.title %>
+<%end%>	
