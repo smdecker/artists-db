@@ -26,5 +26,22 @@
     <label>Notes:</label><br>
     <textarea name="artwork[notes]" rows="4" cols="50"><%=@artwork.notes%></textarea>
     <br><br>
-  <input type="submit" id="submit" value="Update Artwork"/>
+
+    <label>Edit category:</label>
+      <div class="select-box">
+        <ul>
+          <% Category.all.each do |category| %> 
+  		      <li>
+  		        <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>" <%='checked' if @artwork.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
+  		      </li>
+
+          <%end%>
+        </ul>
+      </div>
+
+      <p>or create a new category:</p>
+      <input type="text" name="category[name]"></input>
+
+    	<br><br>
+  	<input type="submit" id="submit" value="Update Artwork"/>
 </form>
