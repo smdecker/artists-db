@@ -4,6 +4,7 @@ class MaterialController < ApplicationController
       redirect to "/"
     else
       @user = current_user
+      category_by_material
       @material = Material.find_by_id(params[:id])
       erb :"materials/index"
     end
@@ -14,7 +15,7 @@ class MaterialController < ApplicationController
 			redirect to "/"
 		else
       @user = current_user
-
+      category_by_material
 			erb :"materials/new_material"
 		end
 	end
