@@ -47,4 +47,26 @@ class MaterialController < ApplicationController
     end
   end
 
+  get '/materials/:slug/edit' do
+    if !logged_in?
+      redirect to "/"
+    else
+      @user = current_user
+      @material = Material.find_by_slug(params[:slug])
+
+      if !current_user.materials.include?(@material)
+        redirect to "/materials/#{@material.slug}"
+      else
+        erb :"materials/edit"
+      end
+    end
+  end
+
+  patch '/materials/:slug' do
+    @material = Material.find_by_slug(params[:slug])
+
+    @material.update(params[:material])
+    redirect to "/materials/#{@material.slug}"
+  end  
+
 end
