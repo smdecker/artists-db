@@ -16,6 +16,7 @@ class ArtworkController < ApplicationController
 		else
       @user = current_user
       category_by_artwork
+      category_by_material
 			erb :"artworks/new_artwork"
 		end
 	end
