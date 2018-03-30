@@ -53,6 +53,8 @@ class ArtworkController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
+      category_by_artwork
+      category_by_material
       @user = current_user
       @artwork = Artwork.find_by_slug(params[:slug])
 

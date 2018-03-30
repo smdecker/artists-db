@@ -43,5 +43,27 @@
       <input type="text" name="category[name]"></input>
 
     	<br><br>
+
+    	<label>Edit related materials:</label>
+      <div> 
+        <% @user.materials.each do |material| %> 
+          <% material.categories.each do |category| %> 
+          <%@all_categories = category.name %>
+            <%if @material_category.uniq.include? @all_categories%>
+              <div>
+                <u><%= category.name %></u>
+                <ul style="width: 250px; margin-bottom:10px; list-style: none; height: 90px; overflow: auto; background-color: #f0f0f0; padding: 2px 15px 2px 5px;">
+                  <% category.materials.each do |material| %>
+                    <li>
+                    <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>" <%='checked' if @artwork.materials.include?(material) %>> <%=material.name%> &nbsp;&nbsp;</input>
+                    </li>
+                  <%end%>
+                </ul>
+              </div>
+            <%end%>
+          <%end%>
+        <%end%> 
+      </div>
+
   	<input type="submit" id="submit" value="Update Artwork"/>
 </form>
