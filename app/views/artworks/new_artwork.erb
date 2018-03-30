@@ -28,13 +28,12 @@
 
   <label>Choose category:</label>
     <ul>
-        <% Category.all.each do |category| %> 
-
-          <li>
-            <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>">   <%= category.name %>
-            </input>
-          </li>
-        <%end%>
+      <% Category.all.each do |category| %> 
+        <li>
+          <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>">   <%= category.name %>
+          </input>
+        </li>
+      <%end%>
     </ul>
 
   <br>

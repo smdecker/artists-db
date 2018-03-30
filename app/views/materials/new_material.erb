@@ -1,0 +1,51 @@
+<form action="/materials" method="POST" enctype="multipart/form-data">
+  <label>Image:</label>
+  <br>
+  <input type="file" name="material[file]"/>
+  <br>
+
+  <label>Name:</label><br>
+  <input type="text" name="material[name]"/>
+  <br><br>
+
+  <label>Purchase Location:</label><br>
+  <input type="text" name="material[purchase_location]"/>
+  <br><br>
+
+  <label>Price:</label> <br>
+  <input type="text" name="material[price]"/>
+  <br><br>
+
+  <label>Quantity:</label><br>
+  <input type="text" name="material[quantity]"/>
+  <br><br>
+
+  <label>Serial:</label><br>
+  <input type="text" name="material[serial]"/>
+  <br><br>
+
+  <label>Notes:</label><br>
+  <textarea name="material[notes]" rows="4" cols="50"></textarea>
+  <br><br>
+
+    <label>Choose category:</label>
+      <ul>
+        <% Category.all.each do |category| %> 
+	        <li>
+	          <input type="checkbox" name="material[category_ids][]" value="<%=category.id%>"> 
+	            <%=category.name %>
+	          </input>
+	        </li>
+        <%end%>
+      </ul>
+
+    </br>
+      <div>
+        <label>or create a new category:</label><br>
+        <input type="text" name="category[name]"></input>
+      </div>
+    <br>
+
+    <input type="submit" id="submit" value="Create New Material"/>
+  </div>
+</form>
