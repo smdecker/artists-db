@@ -25,5 +25,24 @@
 	<label>Notes:</label><br>
 	<textarea name="artwork[notes]" rows="4" cols="50"></textarea>
 	<br>
+
+  <label>Choose category:</label>
+    <ul>
+        <% Category.all.each do |category| %> 
+
+          <li>
+            <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>">   <%= category.name %>
+            </input>
+          </li>
+        <%end%>
+    </ul>
+
+  <br>
+    <div>
+      <label>or create a new category:</label><br>
+      <input type="text" name="category[name]"></input>
+    </div>
+  <br><br>
+
 	<input type="submit" id="submit" value="Create New Artwork"/>
 </form>

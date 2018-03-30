@@ -21,7 +21,16 @@ class ArtworkController < ApplicationController
 
   post '/artworks' do
 
-    @artwork = current_user.artworks.build(params[:artwork])       
+    @artwork = current_user.artworks.build(params[:artwork]) 
+
+    if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
+
+      redirect to '/artworks/new'
+    elsif !params["category"]["name"].empty?
+      @artwork.categories << Category.new(params[:category])
+    else
+      @artwork.category_ids = params[:artwork][:category_ids]
+    end         
 
     if @artwork.save
       redirect to "/artworks"

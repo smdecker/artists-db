@@ -7,5 +7,7 @@
   <p><b>Medium:</b> <%= @artwork.medium %></p>
   <p><b>Dimensions:</b> <%= @artwork.dimensions %></p>
   <p><b>Notes:</b> <%= @artwork.notes %></p>
-
+	<% @artwork.categories.each do |category| %>
+      <p><b>Category:</b><%=category.name%></p>
+  <%end%>
 </div>
