@@ -1,0 +1,51 @@
+<p>Edit Material / <%= @material.name %></p>
+
+<form action="/materials/<%= @material.slug %>" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="_method" value="PATCH">
+    <br>
+    <img src="<%= @material.file_url(:thumb) %>"/><br>
+    <input type="file" name="material[file]" value="<%= @material.file_url %>"/>
+    <br><br>
+
+    <label>Name:</label><br>
+	  <input type="text" name="material[name]" value="<%=@material.name%>"/>
+	  <br><br>
+
+	  <label>Purchase Location:</label> <br>
+	  <input type="text" name="material[purchase_location]" value="<%=@material.purchase_location%>"/>
+	  <br><br>
+
+	  <label>Price:</label> <br>
+	  <input type="text" name="material[price]" value="<%=@material.price%>"/>
+	  <br><br>
+
+	  <label>Quantity:</label> <br>
+	  <input type="text" name="material[quantity]" value="<%=@material.quantity%>"/>
+	  <br><br>
+
+	  <label>Serial:</label> <br>
+	  <input type="text" name="material[serial]" value="<%=@material.serial%>"/>
+	  <br><br>
+
+	  <label>Notes:</label><br>
+	  <textarea name="material[notes]" rows="4" cols="50"><%=@material.notes%></textarea>
+	  <br><br>
+
+    <label>Edit category:</label>
+      <div class="select-box">
+        <ul>
+          <% Category.all.each do |category| %> 
+  		      <li>
+  		        <input type="checkbox" name="material[category_ids][]" value="<%=category.id%>" <%='checked' if @material.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
+  		      </li>
+
+          <%end%>
+        </ul>
+      </div>
+
+      <p>or create a new category:</p>
+      <input type="text" name="category[name]"></input>
+
+    	<br><br>
+  	<input type="submit" id="submit" value="Update Material"/>
+</form>
