@@ -80,4 +80,15 @@ class ArtworkController < ApplicationController
     end
   end
 
+  delete '/artworks/:slug/delete' do
+    if logged_in?
+      @artwork = Artwork.find_by_slug(params[:slug])
+      @artwork.destroy
+
+      redirect to "/artworks"
+    else
+      redirect to "/login"
+    end
+  end
+
 end

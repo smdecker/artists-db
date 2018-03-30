@@ -11,3 +11,9 @@
       <p><b>Category:</b><%=category.name%></p>
   <%end%>
 </div>
+
+<form action="/artworks/<%= @artwork.slug %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  
+  <input type="submit" value="Delete Artwork">
+</form>
