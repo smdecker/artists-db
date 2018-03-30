@@ -75,6 +75,25 @@ class ApplicationController < Sinatra::Base
 		def current_user
 			@current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
 		end
+
+		def category_by_artwork
+      @artwork_category = []
+      @current_user.artworks.each do |artwork|
+        artwork.categories.collect do |category|
+          @artwork_category << category.name
+				end
+			end
+		end
+
+    def category_by_material
+      @material_category = []
+      @current_user.materials.each do |material|
+        material.categories.collect do |category|
+          @material_category << category.name
+        end
+      end
+    end
+
 	end
 
 end
