@@ -2,5 +2,5 @@
 
 <% Material.all.each do |material| %>
 	<img src="<%= material.file_url(:thumb) %>">
-	<%= material.title %>
+	<%= material.name %>
 <%end%>	

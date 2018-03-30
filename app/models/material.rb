@@ -7,4 +7,12 @@ class Material < ActiveRecord::Base
 
 	extend CarrierWave::Mount
 	mount_uploader :file, Uploader
+
+  def slug
+  	title.downcase.gsub(" ","-")
+  end
+
+  def self.find_by_slug(slug)
+    Material.all.find{|material| material.slug == slug}
+  end
 end
