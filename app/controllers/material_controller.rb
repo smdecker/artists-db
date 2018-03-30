@@ -67,6 +67,18 @@ class MaterialController < ApplicationController
 
     @material.update(params[:material])
     redirect to "/materials/#{@material.slug}"
-  end  
+  end
+
+  delete '/materials/:slug/delete' do
+    if logged_in?
+      @material = Material.find_by_slug(params[:slug])
+      @material.destroy
+
+      redirect to "/materials"
+    else
+      redirect to "/login"
+    end
+  end
+ 
 
 end
