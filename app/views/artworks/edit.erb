@@ -36,16 +36,14 @@
     <label>Edit category:</label>
       <div class="select-box">
         <ul>
-          <% @user.artworks.each do |artwork| %> 
-      	    <% artwork.categories.each do |category|%>
-      	    	<%@all_categories = category.name %>
-      	    	<%if @artwork_category.uniq.include? @all_categories%>
-      		      <li>
-      		        <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>" <%='checked' if @artwork.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
-      		      </li>
-      		    <%end%>
-      	    <%end%>
-          <%end%>
+          <% Category.all.each do |category| %> 
+						<%@all_categories = category.name %>
+						<%if @artwork_category.uniq.include? @all_categories%>
+    		      <li>
+    		        <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>" <%='checked' if @artwork.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
+    		      </li>
+    		    <%end%>
+    	    <%end%>
         </ul>
       </div>
 

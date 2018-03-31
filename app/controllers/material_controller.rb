@@ -34,6 +34,7 @@ class MaterialController < ApplicationController
 			redirect to "/"
 		else
       @user = current_user
+      category_by_artwork
       category_by_material
 			erb :"materials/new_material"
 		end
