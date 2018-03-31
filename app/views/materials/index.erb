@@ -1,6 +1,18 @@
 <h1>materials here</h1>
 
-<% Material.all.each do |material| %>
-	<img src="<%= material.file_url(:thumb) %>">
-	<%= material.name %>
-<%end%>	
+<% Category.all.each do |category| %> 
+	<%@all_categories = category.name %>
+	<%if @material_category.uniq.include? @all_categories%>
+		<div><p><%= category.name %></p></div>
+
+  	<% category.materials.each do |material| %>
+      <a href="/materials/<%= material.slug %>">
+        <div><img src="<%= material.file_url(:thumb) %>"></div>
+      </a>
+
+      <a href="/materials/<%= material.slug %>">
+        <p><%= material.name %></p>
+      </a>
+		<%end%>
+	<%end%>
+<%end%>
