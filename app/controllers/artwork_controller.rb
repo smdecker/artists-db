@@ -88,6 +88,15 @@ class ArtworkController < ApplicationController
   patch '/artworks/:slug' do
     @artwork = Artwork.find_by_slug(params[:slug])
 
+    if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
+
+      redirect to '/artworks/new'
+    elsif !params["category"]["name"].empty?
+      @artwork.categories << Category.new(params[:category])
+    else
+      @artwork.category_ids = params[:artwork][:category_ids]
+    end 
+
     @artwork.update(params[:artwork])
     redirect to "/artworks/#{@artwork.slug}"
   end  
