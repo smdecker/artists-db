@@ -85,6 +85,15 @@ class MaterialController < ApplicationController
   patch '/materials/:slug' do
     @material = Material.find_by_slug(params[:slug])
 
+    if params["category"]["name"].empty? && params[:material][:category_ids].nil?
+
+      redirect to '/materials/new'
+    elsif !params["category"]["name"].empty?
+      @material.categories << Category.new(params[:category])
+    else
+      @material.category_ids = params[:material][:category_ids]
+    end 
+
     @material.update(params[:material])
     redirect to "/materials/#{@material.slug}"
   end
