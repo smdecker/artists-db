@@ -1,0 +1,6 @@
+<% @user.materials.each do |material| %> 
+    <a href="/materials/<%= material.slug %>">    	
+			<img src="<%= material.file_url(:thumb) %>">
+	    <p><%= material.name %></p>
+    </a>
+<%end%>
