@@ -56,25 +56,23 @@
   <label>Made with existing material:</label>
 
     <div> 
-      <% @user.materials.each do |material| %> 
-        <% material.categories.each do |category| %> 
-        <%@all_categories = category.name %>
-          <%if @material_category.uniq.include? @all_categories%>
-            <div>
-              <u>
-                <a href="/materials/categories/<%= category.slug %>"><%= category.name %></a>
-              </u>
-              <ul>
-                <% category.materials.each do |material| %>
-                  <li>
-                  <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>"> <%=material.name%> &nbsp;&nbsp;</input>
-                  </li>
-                <%end%>
-              </ul>
-            </div>
-          <%end%>
+      <%Category.all.each do |category| %> 
+      <%@all_categories = category.name %>
+        <%if @material_category.uniq.include? @all_categories%>
+          <div>
+            <u>
+              <a href="/materials/categories/<%= category.slug %>"><%= category.name %></a>
+            </u>
+            <ul>
+              <% category.materials.each do |material| %>
+                <li>
+                <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>"> <%=material.name%> &nbsp;&nbsp;</input>
+                </li>
+              <%end%>
+            </ul>
+          </div>
         <%end%>
-      <%end%>  
+      <%end%>
     </div>
 
 	<input type="submit" id="submit" value="Create New Artwork"/>

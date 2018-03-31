@@ -61,7 +61,7 @@ class ArtworkController < ApplicationController
   get '/artworks/:slug' do
     if logged_in?
       @artwork = Artwork.find_by_slug(params[:slug])
-
+      category_by_artwork
       erb :"artworks/show"
     else
       redirect to "/"

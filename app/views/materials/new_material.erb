@@ -58,25 +58,23 @@
     <label>Used in existing artwork:</label>
 
     <div> 
-      <% @user.artworks.each do |artwork| %> 
-        <% artwork.categories.each do |category| %> 
+      <%Category.all.each do |category| %> 
         <%@all_categories = category.name %>
-          <%if @artwork_category.uniq.include? @all_categories%>
-            <div>
-              <u>
-                <a href="/artworks/categories/<%= category.slug %>"><%= category.name %></a>
-              </u>
-              <ul>
-                <% category.artworks.each do |artwork| %>
-                  <li>
-                  <input type="checkbox" name="artwork[artwork_ids][]" value="<%=artwork.id%>"> <%=artwork.title%> &nbsp;&nbsp;</input>
-                  </li>
-                <%end%>
-              </ul>
-            </div>
-          <%end%>
+        <%if @artwork_category.uniq.include? @all_categories%>
+          <div>
+            <u>
+              <a href="/artworks/categories/<%= category.slug %>"><%= category.name %></a>
+            </u>
+            <ul>
+              <% category.artworks.each do |artwork| %>
+                <li>
+                <input type="checkbox" name="artwork[artwork_ids][]" value="<%=artwork.id%>"> <%=artwork.title%> &nbsp;&nbsp;</input>
+                </li>
+              <%end%>
+            </ul>
+          </div>
         <%end%>
-      <%end%>  
+      <%end%>
     </div>
 
     <input type="submit" id="submit" value="Create New Material"/>

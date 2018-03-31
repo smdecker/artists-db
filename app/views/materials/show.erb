@@ -20,6 +20,10 @@
   </div>
 </div>
 
+<%@material.artworks.each do |artwork|%>
+	<p><%= artwork.title %></p>
+<%end%>
+	
 <form action="/materials/<%= @material.slug %>/delete" method="POST">
   <input type="hidden" name="_method" value="DELETE">
   
