@@ -10,6 +10,15 @@ class ArtworkController < ApplicationController
     end
   end
 
+  get '/artworks/recently-added' do
+    if !logged_in?
+      redirect to "/"
+    else
+      @user = current_user
+      erb :"artworks/recently_added"
+    end
+  end 
+
   get '/artworks/categories/:slug' do
     if logged_in?
       @category = Category.find_by_slug(params[:slug])
