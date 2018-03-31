@@ -1,3 +1,9 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <%end%>
+</div>
+
 <h1>make new artwork</h1>
 
 <form action="/artworks" method="POST" enctype="multipart/form-data">

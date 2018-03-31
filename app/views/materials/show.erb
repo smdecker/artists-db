@@ -1,3 +1,8 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <%end%>
+</div>
 
 <a href="<%= @material.file_url %>"><img src="<%= @material.file_url(:thumb) %>"></a>
 

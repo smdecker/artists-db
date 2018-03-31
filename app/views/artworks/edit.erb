@@ -1,3 +1,9 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <%end%>
+</div>
+
 <p>Edit Artwork / <%= @artwork.title %></p>
 
 <form action="/artworks/<%= @artwork.slug %>" method="POST" enctype="multipart/form-data">

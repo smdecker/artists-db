@@ -1,3 +1,9 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <%end%>
+</div>
+
 <form id="form-login" action="/signup" method="POST">
 		<p>
 			<input type="text" name="username" id="username" placeholder="username"/>
