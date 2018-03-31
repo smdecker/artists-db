@@ -1,0 +1,8 @@
+
+<p><a href="/artworks">Artworks</a> / Category / <%= @category.name %> </p>
+
+
+	<% @category.artworks.each do |artwork| %>
+    <img src="<%= artwork.file_url(:thumb) %>"><br>
+    <p><%= artwork.title %></p>
+	<%end%>
