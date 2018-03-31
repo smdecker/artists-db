@@ -8,7 +8,17 @@ class ArtworkController < ApplicationController
       @artwork = Artwork.find_by_id(params[:id])
       erb :"artworks/index"
     end
-  end 
+  end
+
+  get '/artworks/categories/:slug' do
+    if logged_in?
+      @category = Category.find_by_slug(params[:slug])
+      @user = current_user
+      erb :'categories/artworks'
+    else
+      redirect to "/"
+    end
+  end
 
   get '/artworks/new' do
 		if !logged_in?
