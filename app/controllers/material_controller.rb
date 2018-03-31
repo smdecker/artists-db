@@ -10,6 +10,15 @@ class MaterialController < ApplicationController
     end
   end
 
+  get '/materials/recently-added' do
+    if !logged_in?
+      redirect to "/"
+    else
+      @user = current_user
+      erb :"materials/recently_added"
+    end
+  end 
+
   get '/materials/categories/:slug' do
     if logged_in?
       @category = Category.find_by_slug(params[:slug])
