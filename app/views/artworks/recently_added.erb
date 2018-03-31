@@ -1,0 +1,6 @@
+<% @user.artworks.each do |artwork| %> 
+    <a href="/artworks/<%= artwork.slug %>">    	
+			<img src="<%= artwork.file_url(:thumb) %>">
+	    <p><%= artwork.title %></p>
+    </a>
+<%end%>
