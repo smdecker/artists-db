@@ -44,7 +44,7 @@ class MaterialController < ApplicationController
     @material = current_user.materials.build(params[:material]) 
 
     if params["category"]["name"].empty? && params[:material][:category_ids].nil?
-
+    	flash[:message] = "Please input a category."
       redirect to '/materials/new'
     elsif !params["category"]["name"].empty?
       @material.categories << Category.new(params[:category])
@@ -75,6 +75,8 @@ class MaterialController < ApplicationController
       @material = Material.find_by_slug(params[:slug])
 
       if !current_user.materials.include?(@material)
+      	flash[:message] = "The user you are currently signed in as cannot edit this material."
+      	
         redirect to "/materials/#{@material.slug}"
       else
         erb :"materials/edit"
@@ -86,7 +88,7 @@ class MaterialController < ApplicationController
     @material = Material.find_by_slug(params[:slug])
 
     if params["category"]["name"].empty? && params[:material][:category_ids].nil?
-
+    	flash[:message] = "Please input a category."
       redirect to '/materials/new'
     elsif !params["category"]["name"].empty?
       @material.categories << Category.new(params[:category])

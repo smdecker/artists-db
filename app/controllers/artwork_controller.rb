@@ -45,7 +45,7 @@ class ArtworkController < ApplicationController
     @artwork = current_user.artworks.build(params[:artwork]) 
 
     if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
-
+      flash[:message] = "Please input a category."
       redirect to '/artworks/new'
     elsif !params["category"]["name"].empty?
       @artwork.categories << Category.new(params[:category])
@@ -78,6 +78,7 @@ class ArtworkController < ApplicationController
       @artwork = Artwork.find_by_slug(params[:slug])
 
       if !current_user.artworks.include?(@artwork)
+        flash[:message] = "The user you are currently signed in as cannot edit this artwork."
         redirect to "/artworks/#{@artwork.slug}"
       else
         erb :"artworks/edit"
@@ -89,7 +90,7 @@ class ArtworkController < ApplicationController
     @artwork = Artwork.find_by_slug(params[:slug])
 
     if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
-
+      flash[:message] = "Please input a category."
       redirect to '/artworks/new'
     elsif !params["category"]["name"].empty?
       @artwork.categories << Category.new(params[:category])

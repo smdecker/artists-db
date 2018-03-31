@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
 		set :views, 'app/views'
 		enable :sessions
 		set :session_secret, "secret"
+		use Rack::Flash
 	end
 
 	get '/' do
@@ -30,6 +31,7 @@ class ApplicationController < Sinatra::Base
 			session[:user_id] = user.id
 			redirect to "/"
 		else
+			flash[:message] = "Please check username and password."
 			redirect to "/"
 		end
 	end
@@ -53,7 +55,7 @@ class ApplicationController < Sinatra::Base
 
 	post '/signup' do
 		if params[:username].empty? || params[:password].empty?
-
+			flash[:message] = "You cannot leave any fields blank."
 			redirect to "/signup"
 		else
 				user = User.new(username: params[:username], password: params[:password])
@@ -61,7 +63,7 @@ class ApplicationController < Sinatra::Base
 				session[:user_id] = user.id
 				redirect to "/"
 			else
-
+				flash[:message] = "Please try again."
 				redirect to "/signup"
 			end
 		end
