@@ -1,6 +1,18 @@
 <h1>artworks here</h1>
 
-<% Artwork.all.each do |artwork| %>
-	<img src="<%= artwork.file_url(:thumb) %>">
-	<%= artwork.title %>
-<%end%>	
+<% Category.all.each do |category| %> 
+	<%@all_categories = category.name %>
+	<%if @artwork_category.uniq.include? @all_categories%>
+		<div><p><%= category.name %></p></div>
+
+  	<% category.artworks.each do |artwork| %>
+      <a href="/artworks/<%= artwork.slug %>">
+        <div><img src="<%= artwork.file_url(:thumb) %>"></div>
+      </a>
+
+      <a href="/artworks/<%= artwork.slug %>">
+        <p><%= artwork.title %></p>
+      </a>
+		<%end%>
+	<%end%>
+<%end%>
