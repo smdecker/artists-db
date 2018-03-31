@@ -1,6 +1,4 @@
 require './config/environment'
-require 'sinatra/base'
-require 'sinatra/activerecord'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'mini_magick'

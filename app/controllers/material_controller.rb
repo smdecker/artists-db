@@ -71,12 +71,14 @@ class MaterialController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
+    	category_by_artwork
+      category_by_material
       @user = current_user
       @material = Material.find_by_slug(params[:slug])
 
       if !current_user.materials.include?(@material)
       	flash[:message] = "The user you are currently signed in as cannot edit this material."
-      	
+
         redirect to "/materials/#{@material.slug}"
       else
         erb :"materials/edit"
