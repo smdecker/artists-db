@@ -1,0 +1,14 @@
+.attributes-container {
+	margin-left: 5px;
+	margin-top: 40px;
+}
+
+.select-box ul{
+  margin-top: 3px;
+  width: 250px; 
+  list-style: none; 
+  height: 90px; 
+  overflow: auto; 
+  background-color: #f0f0f0; 
+  padding: 2px 15px 2px 5px;
+}

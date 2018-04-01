@@ -1,79 +1,90 @@
-<div>
-  <% if flash.has?(:message) %>
-    <%= flash[:message] %>
-  <%end%>
-</div>
+<div class="container">
+  <div class="message">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <%end%>
+  </div>
 
-<h1>make new artwork</h1>
-
-<form action="/artworks" method="POST" enctype="multipart/form-data">
-	<label>Image:</label>
-	<br>
-	<input type="file" name="artwork[file]"/>
-	<br>
-
-	<label>Title:</label><br>
-	<input type="text" name="artwork[title]"/>
-	<br><br>
-
-	<label>Date:</label><br>
-	<input type="text" name="artwork[date]"/>
-	<br><br>
-
-	<label>Medium:</label> <br>
-	<input type="text" name="artwork[medium]"/>
-	<br><br>
-
-	<label>Dimensions:</label> <br>
-	<input type="text" name="artwork[dimensions]"/>
-	<br><br>
-
-	<label>Notes:</label><br>
-	<textarea name="artwork[notes]" rows="4" cols="50"></textarea>
-	<br>
-
-  <label>Choose category:</label>
-    <ul>
-			<%Category.all.each do |category| %> 
-				<%@all_categories = category.name %>
-				<%if @artwork_category.uniq.include? @all_categories%>
-	        <li>
-	          <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>"> 
-	            <%=category.name %>
-	          </input>
-	        </li>
-	      <%end%>
-      <%end%>
-    </ul>
-
-  <br>
-    <div>
-      <label>or create a new category:</label><br>
-      <input type="text" name="category[name]"></input>
+  <div class="recent-header">
+    <div class="header-title">
+      <p>Create new artwork</p>
     </div>
-  <br><br>
 
-  <label>Made with existing material:</label>
+    <div class="recent-divider"></div>
+  </div>
 
-    <div> 
-      <%Category.all.each do |category| %> 
-      <%@all_categories = category.name %>
-        <%if @material_category.uniq.include? @all_categories%>
-          <div>
-            <u>
-              <a href="/materials/categories/<%= category.slug %>"><%= category.name %></a>
-            </u>
-            <ul>
-              <% category.materials.each do |material| %>
+  <div class="attributes-container">
+    <form action="/artworks" method="POST" enctype="multipart/form-data">
+      <label>Image:</label>
+      <br>
+      <input type="file" name="artwork[file]"/>
+      <br>
+
+      <label>Title:</label><br>
+      <input type="text" name="artwork[title]"/>
+      <br><br>
+
+      <label>Date:</label><br>
+      <input type="text" name="artwork[date]"/>
+      <br><br>
+
+      <label>Medium:</label> <br>
+      <input type="text" name="artwork[medium]"/>
+      <br><br>
+
+      <label>Notes:</label><br>
+      <textarea name="artwork[notes]" rows="4" cols="50"></textarea>
+      <br>
+
+      <div style="margin-top:30px">
+        <label>Choose category:</label>
+        <div class = "select-box">
+          <ul>
+            <% Category.all.each do |category| %> 
+              <%@all_categories = category.name %>
+              <%if @artwork_category.uniq.include? @all_categories%>
                 <li>
-                <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>"> <%=material.name%> &nbsp;&nbsp;</input>
+                  <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>">   <%= category.name %>
+                  </input>
                 </li>
               <%end%>
-            </ul>
-          </div>
-        <%end%>
-      <%end%>
-    </div>
+            <%end%>
+          </ul>
+        </div>
 
-	<input type="submit" id="submit" value="Create New Artwork"/>
-</form>
+        <br>
+          <div>
+            <label>or create a new category:</label><br>
+            <input type="text" name="category[name]"></input>
+          </div>
+        <br><br>
+
+        <label>Made with existing material:</label>
+
+        <div class="select-box"> 
+          <% Category.all.each do |category| %> 
+          <%@all_categories = category.name %>
+            <%if @material_category.uniq.include? @all_categories%>
+              <div style="display: inline-block;"class="artwork-material">
+                <u>
+                  <a href="/materials/categories/<%= category.slug %>" style="color: #333;"><%= category.name %>
+                  </a>
+                </u>
+                <ul>
+                  <% category.materials.each do |material| %>
+                    <li>
+                    <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>"> <%=material.name%> &nbsp;&nbsp;</input>
+                    </li>
+                  <%end%>
+                </ul>
+              </div>
+            <%end%>
+          <%end%> 
+        </div>
+        <br>
+
+        <input style="margin-top: 20px" type="submit" id="submit" value="Create New Artwork"/>
+      </div>
+    </form>
+  </div>
+</div>

@@ -33,7 +33,7 @@
   <div class="show-container">
 
     <div class="show-img">
-      <a href="<%= @artwork.file_url %>"><img src="<%= @artwork.file_url %>"></a>
+      <a href="<%= @artwork.file_url %>"><img src="<%= @artwork.file_url(:large) %>"></a>
     </div>
 
     <div class="show-details">                
@@ -63,7 +63,7 @@
 
             <div class="item-wrapper">
               <div class="artwork-made-with">
-                <img src="<%= material.file_url(:large) %>">
+                <img src="<%= material.file_url(:thumb) %>">
               </div>
               
               <div class="artwork-made-with-name">
