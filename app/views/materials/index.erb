@@ -1,18 +1,52 @@
-<h1>materials here</h1>
+<div class="container">
+  <div class="header">
+    <div class="header-title">
+      <p>Materials</p>
+    </div>
+    <div class="header-view">
+      <p><a href="/materials/recently-added">View by recently added</a></p>
+      <p> | </p>
+      <p><a href="/artworks">Go to Artworks page →</a></p>
+    </div>
+    <div class="header-functions">
+      <a href="/materials/new"><p><i class="material-icons">&#xe145;</i> ADD MATERIAL</p></a>
+    </div>
+  </div>
+  
+  <% Category.all.each do |category| %> 
+  	<%@all_categories = category.name %>
+  	<%if @material_category.uniq.include? @all_categories%>
 
-<% Category.all.each do |category| %> 
-	<%@all_categories = category.name %>
-	<%if @material_category.uniq.include? @all_categories%>
-		<div><p><%= category.name %></p></div>
+      <%category.materials.each_with_index {|material, i| @counted = i+=1 }%>
+      
+      <div class="index-divider"></div>
+      <div class="category-row">
+        <a href="/materials/categories/<%= category.slug %>">
+          <div class="category-sq">
+            <div class="category-name"><p><%= category.name %></p></div>
+            <div class="item-number"><p><%= @counted %> items</p></div>
+          </div>  
+        </a> 
+      </div>
 
-  	<% category.materials.each do |material| %>
-      <a href="/materials/<%= material.slug %>">
-        <div><img src="<%= material.file_url(:thumb) %>"></div>
-      </a>
+      <div class="row">
+    		<% category.materials.first(4).each do |material| %>
+          <div class="item-group">
+            <div style="margin-left:10px; margin-right:10px;">
+              <a href="/materials/<%= material.slug %>">
+                <div class="item-sq"><img src="<%= material.file_url(:thumb) %>"></div>
+              </a>
 
-      <a href="/materials/<%= material.slug %>">
-        <p><%= material.name %></p>
-      </a>
-		<%end%>
-	<%end%>
-<%end%>
+              <a href="/materials/<%= material.slug %>">
+                <div class="item-name"><p><%= material.name %></p></div>
+              </a>
+            </div>
+          </div>
+  			<%end%>
+      </div>
+      
+    <%end%>
+  <%end%>
+</div>
+
+<div class="bottom-spacer"></div>
