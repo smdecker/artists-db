@@ -1,6 +1,39 @@
-<% @user.artworks.each do |artwork| %> 
-    <a href="/artworks/<%= artwork.slug %>">    	
-			<img src="<%= artwork.file_url(:thumb) %>">
-	    <p><%= artwork.title %></p>
-    </a>
-<%end%>
+<div class="container">
+  <div class="recent-header">
+    <div class="header-title">
+      <p>Artworks / recently added</p>
+    </div>
+
+    <div class="header-view">
+      <p><a href="/artworks">View by category</a></p>
+      <p> | </p>
+      <p><a href="/materials">Go to Materials page →</a></p>
+    </div>
+
+    <div class="header-functions">
+      <a href="/artworks/new"><p><i class="material-icons">&#xe145;</i> ADD ARTWORK</p></a>
+    </div>
+
+  	<div class="recent-divider"></div>
+  </div>
+
+	<div class="container-wrapper">
+		<% @user.artworks.each do |artwork| %> 
+
+		  <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="/artworks/<%= artwork.slug %>">
+
+        	<div class="item-wrapper">
+          	<div class="recent-item-sq">
+          		<img src="<%= artwork.file_url(:thumb) %>">
+            </div>
+
+		    		<div class="recent-item-name">
+              <p><%= artwork.title %></p>
+            </div>
+          </div>
+        </a>
+      </div>  
+		<%end%>
+  </div>
+</div>

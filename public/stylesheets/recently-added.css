@@ -1,0 +1,43 @@
+.col-sm-6.col-md-4.col-lg-3 {
+  margin-top: 50px;
+}
+
+.item-wrapper {
+  max-height: 275px;
+}
+
+.recent-item-sq {
+  height: 252px; 
+  width: 252px; 
+  border: 1px solid #e7e7e5; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recent-item-name {
+  text-align: center; 
+  font-size: 10pt; 
+  margin-top: 10px; 
+  color: #333;
+  width: 252px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.container-wrapper {
+  margin-left: -10px;
+}
+
+.recent-divider {
+  margin-top: 40px; 
+  height: 0; 
+  border-top: 1px solid #e7e7e5;
+  margin-left: auto; 
+  margin-right: auto;
+  position: relative;
+  width: 1060px;
+}
