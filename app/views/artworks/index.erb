@@ -1,36 +1,51 @@
-<h1>artworks here</h1>
-
-<% Category.all.each do |category| %> 
-	<%@all_categories = category.name %>
-	<%if @artwork_category.uniq.include? @all_categories%>
-
-		<%category.artworks.each_with_index {|artwork, i| @counted = i+=1 }%>
-
-		<div class="index-divider"></div>
-    <div class="category-row">
-    	<a href="/artworks/categories/<%= category.slug %>">
-        <div class="category-sq">
-					<div class="category-name"><p><%= category.name %></p></div>
-					<div class="item-number"><p><%= @counted %> items</p></div>
-				</div>  
-      </a>
+<div class="container">
+	<div class="header">
+    <div class="header-title">
+      <p>Artworks</p>
     </div>
-	
-		<div class="row">
-  		<% category.artworks.first(4).each do |artwork| %>
-        <div>
-          <div style="margin-left:10px; margin-right:10px;">
-            <a href="/artworks/<%= artwork.slug %>">
-              <div class="item-sq"><img src="<%= artwork.file_url(:thumb) %>"></div>
-            </a>
-
-            <a href="/artworks/<%= artwork.slug %>">
-              <div class="item-name"><p><%= artwork.title %></p></div>
-            </a>
-          </div>
-        </div>
-			<%end%>	
+    <div class="header-view">
+      <p><a href="/artworks/recently-added">View by recently added</a></p>
+      <p> | </p>
+      <p><a href="/materials">Go to Materials page →</a></p>
     </div>
+    <div class="header-functions">
+      <a href="/artworks/new"><p><i class="material-icons">&#xe145;</i> ADD ARTWORK</p></a>
+    </div>
+  </div>
 
+	<% Category.all.each do |category| %> 
+		<%@all_categories = category.name %>
+		<%if @artwork_category.uniq.include? @all_categories%>
+
+			<%category.artworks.each_with_index {|artwork, i| @counted = i+=1 }%>
+
+			<div class="index-divider"></div>
+	    <div class="category-row">
+	    	<a href="/artworks/categories/<%= category.slug %>">
+	        <div class="category-sq">
+						<div class="category-name"><p><%= category.name %></p></div>
+						<div class="item-number"><p><%= @counted %> items</p></div>
+					</div>  
+	      </a>
+	    </div>
+		
+			<div class="row">
+	  		<% category.artworks.first(4).each do |artwork| %>
+	        <div>
+	          <div style="margin-left:10px; margin-right:10px;">
+	            <a href="/artworks/<%= artwork.slug %>">
+	              <div class="item-sq"><img src="<%= artwork.file_url(:thumb) %>"></div>
+	            </a>
+
+	            <a href="/artworks/<%= artwork.slug %>">
+	              <div class="item-name"><p><%= artwork.title %></p></div>
+	            </a>
+	          </div>
+	        </div>
+				<%end%>	
+	    </div>
+
+		<%end%>
 	<%end%>
-<%end%>
+
+</div>
