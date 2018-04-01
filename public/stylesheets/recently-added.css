@@ -2,10 +2,6 @@
   margin-top: 50px;
 }
 
-.item-wrapper {
-  max-height: 275px;
-}
-
 .recent-item-sq {
   height: 252px; 
   width: 252px; 
@@ -26,10 +22,6 @@
 
 a:hover {
   text-decoration: none;
-}
-
-.container-wrapper {
-  margin-left: -10px;
 }
 
 .recent-divider {

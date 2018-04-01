@@ -4,25 +4,76 @@
   <%end%>
 </div>
 
-<a href="<%= @artwork.file_url %>"><img src="<%= @artwork.file_url(:thumb) %>"></a>
-
-<div>                
-  <p><b>Name:</b> <%= @artwork.title %></p>
-  <p><b>Date:</b> <%= @artwork.date %></p>
-  <p><b>Medium:</b> <%= @artwork.medium %></p>
-  <p><b>Dimensions:</b> <%= @artwork.dimensions %></p>
-  <p><b>Notes:</b> <%= @artwork.notes %></p>
-	<% @artwork.categories.each do |category| %>
-      <p><b>Category:</b><%=category.name%></p>
-  <%end%>
-</div>
-
-<%@artwork.materials.each do |material|%>
-	<p><%= material.name %></p>
-<%end%>
-
-<form action="/artworks/<%= @artwork.slug %>/delete" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
+<div class="container">
+  <div class="message">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <%end%>
+  </div>
   
-  <input type="submit" value="Delete Artwork">
-</form>
+  <div class="recent-header">
+    <div class="header-title">
+      <p><a href="/artworks">Artworks</a> / <%= @artwork.title %></p>
+    </div>
+
+    <div class="show-header-functions">
+      <p>
+        <a href="/artworks/<%= @artwork.slug %>/edit"><i class="material-icons">&#xe150;</i> EDIT ARTWORK</a>
+      </p>
+      <form class="delete-button" action="/artworks/<%= @artwork.slug %>/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <i style="margin-left: 5px;" class="material-icons">&#xe15d;</i>
+        <input style="border:none" class="delete-submit" type="submit" value="Delete Artwork">
+      </form>
+    </div>
+
+    <div class="recent-divider"></div>
+  </div>
+
+  <div class="show-container">
+
+    <div class="show-img">
+      <a href="<%= @artwork.file_url %>"><img src="<%= @artwork.file_url %>"></a>
+    </div>
+
+    <div class="show-details">                
+      <p><b>Name:</b> <%= @artwork.title %></p>
+      <p><b>Date:</b> <%= @artwork.date %></p>
+      <p><b>Medium:</b> <%= @artwork.medium %></p>
+      <p><b>Notes:</b> <%= @artwork.notes %></p>
+      <div class="artwork-category">
+        <% @artwork.categories.each do |category| %>
+          <p><b>Category:</b> <a href="/artworks/categories/<%= category.slug %>" style=" color: #333;"><%=category.name%></a></p>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  <div class="related-content">
+    <div class="recent-divider"></div>
+
+    <div style="margin-left: 5px; margin-top: 30px;">
+      <p style="font-size:16pt; margin-bottom: 0px;">related materials</p> 
+    </div>
+
+    <div class="container-wrapper">
+      <%@artwork.materials.each do |material|%>
+        <div class="col-sm-4 col-md-3 col-lg-3">
+          <a href="/materials/<%= material.slug %>">
+
+            <div class="item-wrapper">
+              <div class="artwork-made-with">
+                <img src="<%= material.file_url(:large) %>">
+              </div>
+              
+              <div class="artwork-made-with-name">
+                <p><%= material.name %></p>
+              </div>
+            </div>
+          </a>
+        </div>
+      <%end%>
+    </div>
+  </div>
+ </div>
+ <div class="bottom-spacer"></div>

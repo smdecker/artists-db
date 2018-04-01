@@ -1,0 +1,110 @@
+.show-header-functions {
+  display: inline-block; 
+  margin-top: -8px; 
+  padding-right: 6px;
+  margin-left: 5px;
+}
+
+.show-header-functions p {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.show-header-functions p a{
+  font-size: 8pt; 
+  border: 1px solid #333; 
+  padding-left: 5px; 
+  padding-right: 5px;
+  padding-bottom: 4px;
+  padding-top: 5px;
+  color: #333; ;
+}
+
+.show-header-functions p a:hover {
+  box-shadow: 0 0 0 1px #333;
+}
+
+.material-icons {
+  color: #333;
+  font-size: 10pt;
+  top: 2.5px;
+  position: relative;
+}
+
+.delete-button {
+  border: 1px solid #333; 
+  width: 127px; 
+  height: 23px; 
+  display:inline-block; 
+  outline: none;
+}
+
+.delete-submit {
+  outline: none; 
+  font-size: 8pt;
+  text-transform: uppercase; 
+  background: none; 
+  padding-left: 0px; 
+  padding-right: 0px;
+}
+
+.delete-button:hover {
+  box-shadow: 0 0 0 1px #333;
+}
+
+.show-container {
+  min-height: 400px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.show-img {
+  float: left;
+  width: 400px;
+  height: 400px;  
+  margin-left: 5px;
+  overflow: hidden;
+}
+
+.show-img img{
+  width: 400px;
+  height: auto;
+}
+
+.show-details {
+  margin-left: 25px;
+  margin-right: 10px;
+  width: 58%;
+  float: right;
+}
+
+.related-content {
+  margin-left: 5px;
+}
+
+.artwork-made-with {
+  height: auto; 
+  width: 202px; 
+  border: 1px solid #e7e7e5; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.artwork-made-with img {
+  height: 200px; 
+  width: 200px;
+}
+
+.col-sm-4.col-md-3.col-lg-3 {
+  margin-top: 40px;
+}
+
+.artwork-made-with-name {
+  text-align: center; 
+  font-size: 10pt; 
+  margin-top: 10px; 
+  color: #333;
+  width: 202px;
+  margin-left: auto;
+  margin-right: auto;
+}
