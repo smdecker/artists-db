@@ -1,6 +1,40 @@
-<% @user.materials.each do |material| %> 
-    <a href="/materials/<%= material.slug %>">    	
-			<img src="<%= material.file_url(:thumb) %>">
-	    <p><%= material.name %></p>
-    </a>
-<%end%>
+<div class="container">
+  <div class="recent-header">
+    <div class="header-title">
+      <p>Materials / recently added</p>
+    </div>
+
+    <div class="header-view">
+      <p><a href="/materials">View by category</a></p>
+      <p> | </p>
+      <p><a href="/artworks">Go to Artworks page →</a></p>
+    </div>
+
+    <div class="header-functions">
+      <a href="/materials/new"><p><i class="material-icons">&#xe145;</i> ADD MATERIAL</p></a>
+    </div>
+
+    <div class="recent-divider"></div>
+  </div>
+  
+  <div class="container-wrapper">
+    <% @user.materials.each do |material| %>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="/materials/<%= material.slug %>">
+
+          <div class="item-wrapper">
+            <div class="recent-item-sq">
+              <img src="<%= material.file_url(:thumb) %>">
+            </div>
+
+            <div class="recent-item-name">
+              <p><%= material.name %></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <%end%>
+  </div>
+</div>
+<div class="bottom-spacer"></div>
