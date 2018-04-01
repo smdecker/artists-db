@@ -1,44 +1,49 @@
-<div>
-  <% if flash.has?(:message) %>
-    <%= flash[:message] %>
-  <%end%>
-</div>
+<div class="container">
+  <div class="message">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <%end%>
+  </div>
 
-<p>Edit Artwork / <%= @artwork.title %></p>
+  <div class="recent-header">
+    <div class="header-title">
+      <p>Edit Artwork / <%= @artwork.title %></p>
+    </div>
 
-<form action="/artworks/<%= @artwork.slug %>" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="_method" value="PATCH">
-    <br>
-    <img src="<%= @artwork.file_url(:thumb) %>"/><br>
-    <input type="file" name="artwork[file]" value="<%= @artwork.file_url %>"/>
-    <br><br>
+    <div class="recent-divider"></div>
+  </div>
 
-    <label>Title:</label><br>
-    <input type="text" name="artwork[title]" value="<%=@artwork.title%>"/>
-    <br><br>
+  <div class="attributes-container">
 
-    <label>Date:</label><br>
-    <input type="text" name="artwork[date]" value="<%=@artwork.date%>"/>
-    <br> <br>
+    <form action="/artworks/<%= @artwork.slug %>" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="PATCH">
+      <br>
+      <img src="<%= @artwork.file_url(:thumb) %>"/><br>
+      <input type="file" name="artwork[file]" value="<%= @artwork.file_url %>"/>
+      <br><br>
 
-    <label>Medium:</label> <br>
-    <input type="text" name="artwork[medium]" value="<%=@artwork.medium%>"/>
-    <br><br>
+      <label>Title:</label><br>
+      <input type="text" name="artwork[title]" value="<%=@artwork.title%>"/>
+      <br><br>
 
-    <label>Dimensions:</label> <br>
-		<input type="text" name="artwork[dimensions]" value="<%=@artwork.dimensions%>"/>
-		<br><br>
+      <label>Date:</label><br>
+      <input type="text" name="artwork[date]" value="<%=@artwork.date%>"/>
+      <br> <br>
 
-    <label>Notes:</label><br>
-    <textarea name="artwork[notes]" rows="4" cols="50"><%=@artwork.notes%></textarea>
-    <br><br>
+      <label>Medium:</label> <br>
+      <input type="text" name="artwork[medium]" value="<%=@artwork.medium%>"/>
+      <br><br>
 
-    <label>Edit category:</label>
+      <label>Notes:</label><br>
+      <textarea name="artwork[notes]" rows="4" cols="50"><%=@artwork.notes%></textarea>
+      <br><br>
+
+      <label>Edit category:</label>
       <div class="select-box">
         <ul>
-          <% Category.all.each do |category| %> 
-						<%@all_categories = category.name %>
-						<%if @artwork_category.uniq.include? @all_categories%>
+    	    <% Category.all.each do |category|%>
+    	    	<%@all_categories = category.name %>
+    	    	<%if @artwork_category.uniq.include? @all_categories%>
     		      <li>
     		        <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>" <%='checked' if @artwork.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
     		      </li>
@@ -51,14 +56,14 @@
       <input type="text" name="category[name]"></input>
 
     	<br><br>
-
-    	<label>Edit related materials:</label>
-      <div> 
+    	
+      <label style="margin-top:15px;" >Edit existing materials:</label>
+      <div style="padding-top: 10px;" class="select-box"> 
         <% @user.materials.each do |material| %> 
           <% material.categories.each do |category| %> 
           <%@all_categories = category.name %>
             <%if @material_category.uniq.include? @all_categories%>
-              <div>
+              <div style="display: inline-block;"class="artwork-material">
                 <u><%= category.name %></u>
                 <ul style="width: 250px; margin-bottom:10px; list-style: none; height: 90px; overflow: auto; background-color: #f0f0f0; padding: 2px 15px 2px 5px;">
                   <% category.materials.each do |material| %>
@@ -73,5 +78,10 @@
         <%end%> 
       </div>
 
-  	<input type="submit" id="submit" value="Update Artwork"/>
-</form>
+      <br>
+      <input type="submit" id="submit" value="Update Artwork"/>
+    </form>
+  </div>
+</div>
+
+<div class="bottom-spacer"></div>
