@@ -65,3 +65,166 @@
   color: #333;
   width: 250px; 
 }
+
+@media screen and (max-width: 1200px) {
+
+  .header {
+    margin-left: 20px;
+    margin-right: 40px;
+  }
+
+  .item-name {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .recent-divider {
+    margin-top: 30px;
+    height: 0;
+    border-top: 1px solid #e7e7e5;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 99%;
+  }
+
+  .recent-divider {
+    margin-top: 30px;
+    height: 0;
+    border-top: 1px solid #e7e7e5;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 99%;
+  }
+
+  .category-sq {
+    margin-left: 30px;
+  }
+
+  .index-divider {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    height: 0;
+    border-top: 1px solid #e7e7e5;
+    margin-left: 22px;
+    float: left;
+    position: relative;
+    width: 93%;
+  }
+
+  .container-wrapper {
+    margin-left: 0px;
+  }
+
+  .recent-header {
+    margin-top: 90px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .attributes-container {
+    margin-left: 30px;
+  }
+
+  .show-container {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  .related-content {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  .show-details {
+    width: 50%;
+    float:left;
+  }
+
+  .row > div:nth-child(4) {
+    display: none;
+  }
+
+  .row > div:nth-child(1) {
+    float:left;
+  }
+
+  .row > div:nth-child(3) {
+    float:right;
+  }
+
+  .row > div {
+    width: calc(100% / 3); 
+    display: inline-block;
+    text-align:center;
+  }
+
+  .row {
+    width: 99%;
+    text-align:center;
+  }
+
+  .show-img {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    width: auto; 
+    margin: 0 auto;
+    z-index: 4;
+  }
+
+  .show-img img{
+    width: 320px;
+    height: auto;
+  }
+
+  .show-img {
+    width: auto;
+  }
+
+  .show-details {
+    width: 50%;
+    float:left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: auto; 
+    margin: 0 auto;
+    z-index: 4
+  }
+
+  .show-img {
+    width: auto;
+  }
+
+  .show-img img{
+    width: 300px;
+    height: auto;
+  }
+
+  .show-details {
+    width: 50%;
+    float:left;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content, .sidebar {
+    float: none;
+    width: 100%;
+  }
+
+  .sidebar {
+    background: transparent;
+    border: none;
+    border-top: 2px solid #ccc;
+    padding: 0;
+  }
+} 
+
