@@ -1,7 +1,12 @@
-<div>
-  <% if flash.has?(:message) %>
-    <%= flash[:message] %>
-  <%end%>
+<div class="active-user">
+  <div class="logout">
+    <p><a href="/logout">log out</a></p>
+  </div>
+  <p><%=@current_user.username%></p>
+</div>
+
+<div id="db-icon">
+  <a href="/"><img src="../images/db-icon.svg"></a>
 </div>
 
 <div class="container">
