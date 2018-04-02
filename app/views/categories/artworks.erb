@@ -1,8 +1,27 @@
+<div class="container">
+	<div class="recent-header">
+	  <div class="header-title">
+			<p><a href="/artworks">Artworks</a> / Category / <%= @category.name %> </p>
+		</div>
+	  <div class="recent-divider"></div>
+	</div>
 
-<p><a href="/artworks">Artworks</a> / Category / <%= @category.name %> </p>
+	<div class="container-wrapper">
+		<% @category.artworks.each do |artwork| %>
+			<div class="col-sm-6 col-md-4 col-lg-3">
+	      <a href="/artworks/<%= artwork.slug %>">
 
+	      	<div class="item-wrapper">
+	          <div class="recent-item-sq">
+	    				<img src="<%= artwork.file_url(:thumb) %>">
+	    			</div>
 
-	<% @category.artworks.each do |artwork| %>
-    <img src="<%= artwork.file_url(:thumb) %>"><br>
-    <p><%= artwork.title %></p>
-	<%end%>
+	    			<div class="recent-item-name">
+	            <p><%= artwork.title %></p>
+	          </div>
+	        </div>
+	      </a>
+	    </div>
+		<%end%>
+	</div>
+</div>
