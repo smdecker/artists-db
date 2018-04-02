@@ -1,10 +1,17 @@
-<div>
-  <% if flash.has?(:message) %>
-    <%= flash[:message] %>
-  <%end%>
-</div>
+<!DOCTYPE html>
+<html lang="en" style="background-color:#d4d4d4">
 
-<form id="form-login" action="/signup" method="POST">
+<a href="/"><img id="db-icon" src="images/db-icon.svg" style="position:relative"></a>
+
+<div style="background-color:#d4d4d4; margin-top: 22%;" class="container">
+
+	<div class="login-message">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <%end%>
+  </div>
+	
+	<form id="form-login" action="/signup" method="POST">
 		<p>
 			<input type="text" name="username" id="username" placeholder="username"/>
 		</p>
@@ -15,4 +22,6 @@
 		<br>
 
 		<input id="login" type="submit" value="CREATE ACCOUNT"/>
-</form>
+	</form>
+
+</div>
