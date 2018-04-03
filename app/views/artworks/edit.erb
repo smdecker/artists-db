@@ -74,23 +74,21 @@
     	
       <label style="margin-top:15px;" >Edit existing materials:</label>
       <div style="padding-top: 10px;" class="select-box"> 
-        <% @user.materials.each do |material| %> 
-          <% material.categories.each do |category| %> 
-          <%@all_categories = category.name %>
-            <%if @material_category.uniq.include? @all_categories%>
-              <div style="display: inline-block;"class="artwork-material">
-                <u><%= category.name %></u>
-                <ul style="width: 250px; margin-bottom:10px; list-style: none; height: 90px; overflow: auto; background-color: #f0f0f0; padding: 2px 15px 2px 5px;">
-                  <% category.materials.each do |material| %>
-                    <li>
-                    <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>" <%='checked' if @artwork.materials.include?(material) %>> <%=material.name%> &nbsp;&nbsp;</input>
-                    </li>
-                  <%end%>
-                </ul>
-              </div>
-            <%end%>
+        <% Category.all.each do |category| %>
+        <%@all_categories = category.name %>
+          <%if @material_category.uniq.include? @all_categories%>
+            <div style="display: inline-block;"class="artwork-material">
+              <u><%= category.name %></u>
+              <ul style="width: 250px; margin-bottom:10px; list-style: none; height: 90px; overflow: auto; background-color: #f0f0f0; padding: 2px 15px 2px 5px;">
+                <% category.materials.each do |material| %>
+                  <li>
+                  <input type="checkbox" name="artwork[material_ids][]" value="<%=material.id%>" <%='checked' if @artwork.materials.include?(material) %>> <%=material.name%> &nbsp;&nbsp;</input>
+                  </li>
+                <%end%>
+              </ul>
+            </div>
           <%end%>
-        <%end%> 
+        <%end%>
       </div>
 
       <br>

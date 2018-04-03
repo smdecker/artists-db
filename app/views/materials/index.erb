@@ -41,7 +41,7 @@
       </div>
 
       <div class="row">
-    		<% category.materials.order("id ASC").first(4).each do |material| %>
+    		<% category.materials.order("id DESC").first(4).each do |material| %>
           <div class="item-group">
             <div style="margin-left:10px; margin-right:10px;">
               <a href="/materials/<%= material.slug %>">

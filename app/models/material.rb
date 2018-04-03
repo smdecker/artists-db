@@ -9,7 +9,7 @@ class Material < ActiveRecord::Base
 	mount_uploader :file, Uploader
 
   def slug
-  	name.downcase.gsub(" ","-")
+  	name.downcase.gsub(/[^0-9a-z]/i,"-")
   end
 
   def self.find_by_slug(slug)

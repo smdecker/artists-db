@@ -41,7 +41,7 @@
 	    </div>
 		
 			<div class="row">
-	  		<% category.artworks.order("id ASC").first(4).each do |artwork| %>
+	  		<% category.artworks.order("id DESC").first(4).each do |artwork| %>
 	        <div class="item-group">
 	          <div style="margin-left:10px; margin-right:10px;">
 	            <a href="/artworks/<%= artwork.slug %>">
