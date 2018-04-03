@@ -24,7 +24,7 @@
     </div>
   </div>
 
-	<% Category.all.each do |category| %> 
+	<% Category.order("id DESC").all.each do |category| %> 
 		<%@all_categories = category.name %>
 		<%if @artwork_category.uniq.include? @all_categories%>
 
@@ -41,8 +41,8 @@
 	    </div>
 		
 			<div class="row">
-	  		<% category.artworks.first(4).each do |artwork| %>
-	        <div>
+	  		<% category.artworks.order("id ASC").first(4).each do |artwork| %>
+	        <div class="item-group">
 	          <div style="margin-left:10px; margin-right:10px;">
 	            <a href="/artworks/<%= artwork.slug %>">
 	              <div class="item-sq"><img src="<%= artwork.file_url(:thumb) %>"></div>

@@ -86,14 +86,15 @@
 	      <%Category.all.each do |category| %> 
 	        <%@all_categories = category.name %>
 	        <%if @artwork_category.uniq.include? @all_categories%>
-	          <div>
+	          <div style="display: inline-block;" class="artwork-material">
 	            <u>
-	              <a href="/artworks/categories/<%= category.slug %>"><%= category.name %></a>
+	              <a href="/artworks/categories/<%= category.slug %>" style="color: #333;"><%= category.name %>
+	              </a>
 	            </u>
 	            <ul>
 	              <% category.artworks.each do |artwork| %>
 	                <li>
-	                <input type="checkbox" name="artwork[artwork_ids][]" value="<%=artwork.id%>"> <%=artwork.title%> &nbsp;&nbsp;</input>
+	                <input type="checkbox" name="material[artwork_ids][]" value="<%=artwork.id%>"> <%=artwork.title%> &nbsp;&nbsp;</input>
 	                </li>
 	              <%end%>
 	            </ul>

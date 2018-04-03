@@ -61,7 +61,7 @@ class MaterialController < ApplicationController
   get '/materials/:slug' do
     if logged_in?
       @material = Material.find_by_slug(params[:slug])
-
+      category_by_material
       erb :"materials/show"
     else
       redirect to "/"

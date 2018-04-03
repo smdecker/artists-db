@@ -113,4 +113,15 @@ class ArtworkController < ApplicationController
     end
   end
 
+  delete '/categories/:slug/delete' do
+    if logged_in?
+      @category = Category.find_by_slug(params[:slug])
+      @category.destroy
+
+      redirect to "/artworks"
+    else
+      redirect to "/login"
+    end
+  end
+
 end

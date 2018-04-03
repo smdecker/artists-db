@@ -24,7 +24,7 @@
     </div>
   </div>
   
-  <% Category.all.each do |category| %> 
+  <% Category.order("id DESC").all.each do |category| %> 
   	<%@all_categories = category.name %>
   	<%if @material_category.uniq.include? @all_categories%>
 
@@ -41,7 +41,7 @@
       </div>
 
       <div class="row">
-    		<% category.materials.first(4).each do |material| %>
+    		<% category.materials.order("id ASC").first(4).each do |material| %>
           <div class="item-group">
             <div style="margin-left:10px; margin-right:10px;">
               <a href="/materials/<%= material.slug %>">

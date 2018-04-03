@@ -92,7 +92,8 @@ a:focus {
 }
 
 .header-title p {
-  font-size: 24pt; 
+  font-size: 24pt;
+  line-height: 24pt; 
   margin-bottom: 20px;
 }
 
@@ -474,13 +475,17 @@ a:hover {
   height: auto; 
   width: 202px; 
   border: 1px solid #e7e7e5; 
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 0px; 
+  margin-right: 0px;
 }
 
 .artwork-made-with img {
   height: 200px; 
   width: 200px;
+}
+
+.artwork-made-with img:hover {
+  opacity: 0.5;
 }
 
 .col-sm-4.col-md-3.col-lg-3 {
@@ -493,8 +498,8 @@ a:hover {
   margin-top: 10px; 
   color: #333;
   width: 202px;
-  margin-left: auto;
-  margin-right: auto;
+/*  margin-left: auto;
+  margin-right: auto;*/
 }
 
 
