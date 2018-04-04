@@ -52,18 +52,13 @@ class ApplicationController < Sinatra::Base
 	end
 
 	post '/signup' do
-		if params[:username].empty? || params[:password].empty?
+		user = User.new(params)
+		if user.save
+			session[:user_id] = user.id
+			redirect to "/"
+		else
 			flash[:message] = "You cannot leave any fields blank."
 			redirect to "/signup"
-		else
-				user = User.new(username: params[:username], password: params[:password])
-			if user.save
-				session[:user_id] = user.id
-				redirect to "/"
-			else
-				flash[:message] = "Please try again."
-				redirect to "/signup"
-			end
 		end
 	end
 

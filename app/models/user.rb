@@ -3,6 +3,5 @@ class User < ActiveRecord::Base
 	has_many :materials
 	has_many :artworks
 	has_many :categories
-	validates :username, presence: true
-	validates :password, presence: true
+	validates_presence_of :username, :password
 end
