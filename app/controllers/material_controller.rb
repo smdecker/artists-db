@@ -3,7 +3,6 @@ class MaterialController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @user = current_user
       category_by_material
       @material = Material.find_by_id(params[:id])
       erb :"materials/index"
@@ -14,18 +13,16 @@ class MaterialController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @user = current_user
       erb :"materials/recently_added"
     end
   end 
 
   get '/materials/categories/:slug' do
-    if logged_in?
-      @category = Category.find_by_slug(params[:slug])
-      @user = current_user
-      erb :'categories/materials'
-    else
+    if !logged_in?
       redirect to "/"
+    else
+      @category = Category.find_by_slug(params[:slug])
+      erb :'categories/materials'
     end
   end
 
@@ -33,7 +30,6 @@ class MaterialController < ApplicationController
 		if !logged_in?
 			redirect to "/"
 		else
-      @user = current_user
       category_by_artwork
       category_by_material
 			erb :"materials/new_material"
@@ -41,7 +37,6 @@ class MaterialController < ApplicationController
 	end
 
 	post '/materials' do
-
     @material = current_user.materials.build(params[:material]) 
 
     if params["category"]["name"].empty? && params[:material][:category_ids].nil?
@@ -59,12 +54,12 @@ class MaterialController < ApplicationController
   end
 
   get '/materials/:slug' do
-    if logged_in?
+    if !logged_in?
+      redirect to "/"
+    else
       @material = Material.find_by_slug(params[:slug])
       category_by_material
       erb :"materials/show"
-    else
-      redirect to "/"
     end
   end
 
@@ -74,12 +69,10 @@ class MaterialController < ApplicationController
     else
     	category_by_artwork
       category_by_material
-      @user = current_user
       @material = Material.find_by_slug(params[:slug])
 
       if !current_user.materials.include?(@material)
       	flash[:message] = "The user you are currently signed in as cannot edit this material."
-
         redirect to "/materials/#{@material.slug}"
       else
         erb :"materials/edit"
@@ -104,15 +97,20 @@ class MaterialController < ApplicationController
   end
 
   delete '/materials/:slug/delete' do
-    if logged_in?
-      @material = Material.find_by_slug(params[:slug])
-      @material.destroy
-
-      redirect to "/materials"
+    if !logged_in?
+      redirect to "/"
     else
-      redirect to "/login"
+      @material = Material.find_by_slug(params[:slug])
+
+      if !current_user.materials.include?(@material)
+        flash[:message] = "The user you are currently signed in as cannot delete this material."
+        redirect to "/materials/#{@material.slug}"
+      else
+        @material.destroy
+
+        redirect to "/materials"
+      end
     end
   end
- 
 
 end

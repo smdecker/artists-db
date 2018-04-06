@@ -3,7 +3,6 @@ class ArtworkController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @user = current_user
       category_by_artwork
       @artwork = Artwork.find_by_id(params[:id])
       erb :"artworks/index"
@@ -14,18 +13,16 @@ class ArtworkController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @user = current_user
       erb :"artworks/recently_added"
     end
   end 
 
   get '/artworks/categories/:slug' do
-    if logged_in?
-      @category = Category.find_by_slug(params[:slug])
-      @user = current_user
-      erb :'categories/artworks'
-    else
+    if !logged_in?
       redirect to "/"
+    else
+      @category = Category.find_by_slug(params[:slug])
+      erb :'categories/artworks'
     end
   end
 
@@ -33,7 +30,6 @@ class ArtworkController < ApplicationController
 		if !logged_in?
 			redirect to "/"
 		else
-      @user = current_user
       category_by_artwork
       category_by_material
 			erb :"artworks/new_artwork"
@@ -41,7 +37,6 @@ class ArtworkController < ApplicationController
 	end
 
   post '/artworks' do
-
     @artwork = current_user.artworks.build(params[:artwork]) 
 
     if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
@@ -59,12 +54,12 @@ class ArtworkController < ApplicationController
   end
 
   get '/artworks/:slug' do
-    if logged_in?
+    if !logged_in?
+      redirect to "/"
+    else
       @artwork = Artwork.find_by_slug(params[:slug])
       category_by_artwork
       erb :"artworks/show"
-    else
-      redirect to "/"
     end
   end
 
@@ -74,7 +69,6 @@ class ArtworkController < ApplicationController
     else
       category_by_artwork
       category_by_material
-      @user = current_user
       @artwork = Artwork.find_by_slug(params[:slug])
 
       if !current_user.artworks.include?(@artwork)
@@ -103,24 +97,19 @@ class ArtworkController < ApplicationController
   end  
 
   delete '/artworks/:slug/delete' do
-    if logged_in?
+    if !logged_in?
+      redirect to "/"
+    else
       @artwork = Artwork.find_by_slug(params[:slug])
-      @artwork.destroy
 
-      redirect to "/artworks"
-    else
-      redirect to "/login"
-    end
-  end
+      if !current_user.artworks.include?(@artwork)
+        flash[:message] = "The user you are currently signed in as cannot delete this artwork."
+        redirect to "/artworks/#{@artwork.slug}"
+      else
+        @artwork.destroy
 
-  delete '/categories/:slug/delete' do
-    if logged_in?
-      @category = Category.find_by_slug(params[:slug])
-      @category.destroy
-
-      redirect to "/artworks"
-    else
-      redirect to "/login"
+        redirect to "/artworks"
+      end
     end
   end
 

@@ -29,7 +29,7 @@
   </div>
 
 	<div class="container-wrapper">
-		<% @user.artworks.order("id DESC").each do |artwork| %> 
+		<% @current_user.artworks.order("id DESC").each do |artwork| %> 
 
 		  <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="/artworks/<%= artwork.slug %>">
@@ -48,3 +48,4 @@
 		<%end%>
   </div>
 </div>
+<div class="bottom-spacer"></div>

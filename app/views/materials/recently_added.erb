@@ -10,12 +10,6 @@
 </div>
 
 <div class="container">
-	<div class="message">
-    <% if flash.has?(:message) %>
-      <%= flash[:message] %>
-    <%end%>
-  </div>
-
   <div class="recent-header">
     <div class="header-title">
       <p>Materials / recently added</p>
@@ -35,7 +29,7 @@
   </div>
   
   <div class="container-wrapper">
-    <% @user.materials.each do |material| %>
+    <% @current_user.materials.order("id DESC").each do |material| %>
 
       <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="/materials/<%= material.slug %>">
