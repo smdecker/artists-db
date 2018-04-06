@@ -9,7 +9,7 @@ class Artwork < ActiveRecord::Base
 	mount_uploader :file, Uploader
 
   def slug
-  	title.downcase.gsub(/[^0-9a-z]/i,"-")
+  	title.parameterize.truncate(80, omission: '')
   end
 
   def self.find_by_slug(slug)
