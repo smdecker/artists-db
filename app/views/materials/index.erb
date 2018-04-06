@@ -25,9 +25,7 @@
   </div>
   
   <% Category.order("id DESC").all.each do |category| %> 
-  	<%@all_categories = category.name %>
-  	<%if @material_category.uniq.include? @all_categories%>
-
+  	<%if @material_category.uniq.include? category.name%>
       <%category.materials.each_with_index {|material, i| @counted = i+=1 }%>
       
       <div class="index-divider"></div>

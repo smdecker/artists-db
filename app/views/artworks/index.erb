@@ -25,8 +25,7 @@
   </div>
 
 	<% Category.order("id DESC").all.each do |category| %> 
-		<%@all_categories = category.name %>
-		<%if @artwork_category.uniq.include? @all_categories%>
+		<%if @artwork_category.uniq.include? category.name%>
 
 			<%category.artworks.each_with_index {|artwork, i| @counted = i+=1 }%>
 
