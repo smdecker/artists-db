@@ -75,7 +75,7 @@ class ApplicationController < Sinatra::Base
       @artwork_category = []
       @current_user.artworks.each do |artwork|
         artwork.categories.collect do |category|
-          @artwork_category << category.name
+          @artwork_category << category.id
 				end
 			end
 		end
@@ -84,7 +84,7 @@ class ApplicationController < Sinatra::Base
       @material_category = []
       @current_user.materials.each do |material|
         material.categories.collect do |category|
-          @material_category << category.name
+          @material_category << category.id
         end
       end
     end

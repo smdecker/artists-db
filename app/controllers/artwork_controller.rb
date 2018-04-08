@@ -4,7 +4,6 @@ class ArtworkController < ApplicationController
       redirect to "/"
     else
       category_by_artwork
-      @artwork = Artwork.find_by_id(params[:id])
       erb :"artworks/index"
     end
   end
@@ -70,8 +69,9 @@ class ArtworkController < ApplicationController
       category_by_artwork
       category_by_material
       @artwork = Artwork.find_by_slug(params[:slug])
+      @artwork_id = Artwork.find_by(params[:id])
 
-      if !current_user.artworks.include?(@artwork)
+      if !current_user.artworks.include?(@artwork_id)
         flash[:message] = "The user you are currently signed in as cannot edit this artwork."
         redirect to "/artworks/#{@artwork.slug}"
       else
@@ -101,8 +101,9 @@ class ArtworkController < ApplicationController
       redirect to "/"
     else
       @artwork = Artwork.find_by_slug(params[:slug])
+      @artwork_id = Artwork.find_by(params[:id])
 
-      if !current_user.artworks.include?(@artwork)
+      if !current_user.artworks.include?(@artwork_id)
         flash[:message] = "The user you are currently signed in as cannot delete this artwork."
         redirect to "/artworks/#{@artwork.slug}"
       else

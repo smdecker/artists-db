@@ -57,7 +57,7 @@
       <div class="select-box">
         <ul>
     	    <% Category.all.each do |category|%>
-    	    	<%if @artwork_category.uniq.include? category.name%>
+    	    	<%if @artwork_category.uniq.include? category.id%>
     		      <li>
     		        <input type="checkbox" name="artwork[category_ids][]" value="<%=category.id%>" <%='checked' if @artwork.categories.include?(category) %>> <%=category.name%> &nbsp;&nbsp;</input>
     		      </li>

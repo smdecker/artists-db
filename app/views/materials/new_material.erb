@@ -61,7 +61,7 @@
 	    <div class="select-box">
 	      <ul>
 	  			<%Category.all.each do |category| %> 
-	  				<%if @material_category.uniq.include? category.name%>
+	  				<%if @material_category.uniq.include? category.id%>
 	  	        <li>
 	  	          <input type="checkbox" name="material[category_ids][]" value="<%=category.id%>"> 
 	  	            <%=category.name %>
@@ -83,7 +83,7 @@
 
 	    <div class="select-box">
 	      <%Category.all.each do |category| %> 
-	        <%if @artwork_category.uniq.include? category.name%>
+	        <%if @artwork_category.uniq.include? category.id%>
 	          <div style="display: inline-block;" class="artwork-material">
 	            <u>
 	              <a href="/artworks/categories/<%= category.slug %>" style="color: #333;"><%= category.name %>
