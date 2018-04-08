@@ -41,6 +41,9 @@ class ArtworkController < ApplicationController
     if params["category"]["name"].empty? && params[:artwork][:category_ids].nil?
       flash[:message] = "Please input a category."
       redirect to '/artworks/new'
+    elsif params["artwork"]["title"].empty?
+      flash[:message] = "Please input a title."
+      redirect to '/artworks/new'
     elsif !params["category"]["name"].empty?
       @artwork.categories << Category.new(params[:category])
     else

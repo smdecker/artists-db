@@ -41,6 +41,9 @@ class MaterialController < ApplicationController
     if params["category"]["name"].empty? && params[:material][:category_ids].nil?
     	flash[:message] = "Please input a category."
       redirect to '/materials/new'
+    elsif params["material"]["name"].empty?
+      flash[:message] = "Please input a name."
+      redirect to '/materials/new'
     elsif !params["category"]["name"].empty?
       @material.categories << Category.new(params[:category])
     else
