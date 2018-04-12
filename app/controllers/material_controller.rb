@@ -72,13 +72,12 @@ class MaterialController < ApplicationController
     	category_by_artwork
       category_by_material
       @material = Material.find_by_slug(params[:slug])
-      @material_id = Material.find_by(params[:id])
 
-      if !current_user.materials.include?(@material_id)
-      	flash[:message] = "The user you are currently signed in as cannot edit this material."
-        redirect to "/materials/#{@material.slug}"
-      else
+      if @material.user == current_user
         erb :"materials/edit"
+      else
+        flash[:message] = "The user you are currently signed in as cannot edit this material."
+        redirect to "/materials/#{@material.slug}"
       end
     end
   end
@@ -104,15 +103,14 @@ class MaterialController < ApplicationController
       redirect to "/"
     else
       @material = Material.find_by_slug(params[:slug])
-      @material_id = Material.find_by(params[:id])
 
-      if !current_user.materials.include?(@material_id)
-        flash[:message] = "The user you are currently signed in as cannot delete this material."
-        redirect to "/materials/#{@material.slug}"
-      else
+      if @material.user == current_user
         @material.destroy
 
         redirect to "/materials"
+      else
+        flash[:message] = "The user you are currently signed in as cannot delete this material."
+        redirect to "/materials/#{@material.slug}"
       end
     end
   end

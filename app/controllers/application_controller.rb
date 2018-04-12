@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :login
     else
-      session.clear
+      session.destroy
       redirect to "/"
     end
 	end	
@@ -68,8 +68,9 @@ class ApplicationController < Sinatra::Base
 		end
 
 		def current_user
-			@current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		end
+
 
 		def category_by_artwork
       @artwork_category = []
