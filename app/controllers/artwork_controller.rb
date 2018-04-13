@@ -59,9 +59,16 @@ class ArtworkController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @artwork = Artwork.find_by_slug(params[:slug])
-      category_by_artwork
-      erb :"artworks/show"
+
+      if @current_user.artworks.find_by_slug(params[:slug]) == nil
+        @artwork = Artwork.find_by_slug(params[:slug])
+        category_by_artwork
+        erb :"artworks/show"
+      else
+        @artwork = @current_user.artworks.find_by_slug(params[:slug])
+        category_by_artwork
+        erb :"artworks/show"
+      end
     end
   end
 
@@ -71,13 +78,15 @@ class ArtworkController < ApplicationController
     else
       category_by_artwork
       category_by_material
-      @artwork = Artwork.find_by_slug(params[:slug])
 
-      if @artwork.user == current_user
-        erb :"artworks/edit"
-      else
+      if @current_user.artworks.find_by_slug(params[:slug]) == nil
         flash[:message] = "The user you are currently signed in as cannot edit this artwork."
+
+        @artwork = Artwork.find_by_slug(params[:slug])
         redirect to "/artworks/#{@artwork.slug}"
+      else
+        @artwork = @current_user.artworks.find_by_slug(params[:slug])
+        erb :"artworks/edit"
       end
     end
   end
@@ -103,15 +112,16 @@ class ArtworkController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @artwork = Artwork.find_by_slug(params[:slug])
-
-      if @artwork.user == current_user
-        @artwork.destroy
-
-        redirect to "/artworks"
-      else
+      if @current_user.artworks.find_by_slug(params[:slug]) == nil
         flash[:message] = "The user you are currently signed in as cannot delete this artwork."
+
+        @artwork = Artwork.find_by_slug(params[:slug])
         redirect to "/artworks/#{@artwork.slug}"
+      else
+        @artwork = @current_user.artworks.find_by_slug(params[:slug])
+        
+        @artwork.destroy
+        redirect to "/artworks"
       end
     end
   end

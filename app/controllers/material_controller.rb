@@ -59,9 +59,16 @@ class MaterialController < ApplicationController
     if !logged_in?
       redirect to "/"
     else
-      @material = Material.find_by_slug(params[:slug])
-      category_by_material
-      erb :"materials/show"
+
+      if @current_user.materials.find_by_slug(params[:slug]) == nil
+        @material = Material.find_by_slug(params[:slug])
+        category_by_material
+        erb :"materials/show"
+      else
+        @material = @current_user.materials.find_by_slug(params[:slug])
+        category_by_material
+        erb :"materials/show"
+      end
     end
   end
 
@@ -71,13 +78,15 @@ class MaterialController < ApplicationController
     else
     	category_by_artwork
       category_by_material
-      @material = Material.find_by_slug(params[:slug])
 
-      if @material.user == current_user
-        erb :"materials/edit"
-      else
+      if @current_user.materials.find_by_slug(params[:slug]) == nil
         flash[:message] = "The user you are currently signed in as cannot edit this material."
+
+        @material = Material.find_by_slug(params[:slug])
         redirect to "/materials/#{@material.slug}"
+      else
+        @material = @current_user.materials.find_by_slug(params[:slug])
+        erb :"materials/edit"
       end
     end
   end
@@ -102,16 +111,17 @@ class MaterialController < ApplicationController
   delete '/materials/:slug/delete' do
     if !logged_in?
       redirect to "/"
-    else
-      @material = Material.find_by_slug(params[:slug])
-
-      if @material.user == current_user
-        @material.destroy
-
-        redirect to "/materials"
-      else
+    else     
+      if @current_user.materials.find_by_slug(params[:slug]) == nil
         flash[:message] = "The user you are currently signed in as cannot delete this material."
+        
+        @material = Material.find_by_slug(params[:slug])
         redirect to "/materials/#{@material.slug}"
+      else
+        @material = @current_user.materials.find_by_slug(params[:slug])
+
+        @material.destroy
+        redirect to "/materials"
       end
     end
   end
