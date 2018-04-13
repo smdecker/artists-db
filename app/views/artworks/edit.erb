@@ -74,7 +74,7 @@
       <label style="margin-top:15px;" >Edit existing materials:</label>
       <div style="padding-top: 10px;" class="select-box"> 
         <% Category.all.each do |category| %>
-          <%if @material_category.uniq.include? category.name%>
+          <%if @material_category.uniq.include? category.id%>
             <div style="display: inline-block;"class="artwork-material">
               <u><%= category.name %></u>
               <ul style="width: 250px; margin-bottom:10px; list-style: none; height: 90px; overflow: auto; background-color: #f0f0f0; padding: 2px 15px 2px 5px;">

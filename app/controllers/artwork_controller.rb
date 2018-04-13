@@ -92,6 +92,7 @@ class ArtworkController < ApplicationController
       @artwork.categories << Category.new(params[:category])
     else
       @artwork.category_ids = params[:artwork][:category_ids]
+      @artwork.material_ids = params[:artwork][:material_ids]
     end 
 
     @artwork.update(params[:artwork])
